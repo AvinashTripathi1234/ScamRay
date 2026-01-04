@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in to your account</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling when trap activates */
+        }
+
+        /* --- THE PHISHING FORM --- */
+        .login-container {
+            background: white;
+            padding: 44px;
+            width: 360px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            border-radius: 2px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #5e5e5e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box {
+            width: 20px;
+            height: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+        .sq { width: 100%; height: 100%; }
+        .r { background: #f25022; }
+        .g { background: #7fba00; }
+        .b { background: #00a4ef; }
+        .y { background: #ffb900; }
+
+        h1 { font-size: 24px; font-weight: 600; margin-bottom: 10px; color: #1b1b1b; }
+        
+        input {
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 1px solid #666;
+            outline: none;
+            font-size: 16px;
+        }
+        input:focus { border-bottom: 2px solid #0067b8; }
+
+        .btn {
+            background-color: #0067b8;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-size: 15px;
+            cursor: pointer;
+            float: right;
+            font-weight: 600;
+        }
+        .btn:hover { background-color: #005da6; }
+
+        /* --- THE FISHY TRAP (Hidden by default) --- */
+        #trap-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #004da3; /* Classic Blue Screen Color */
+            z-index: 9999;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 100px;
+            cursor: not-allowed;
+        }
+
+        .alert-box {
+            background: #fff;
+            color: black;
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 4px solid red;
+            box-shadow: 0 0 50px red;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .blink { animation: blinker 1s linear infinite; color: red; font-weight: bold; font-size: 20px;}
+        @keyframes blinker { 50% { opacity: 0; } }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container" id="loginForm">
+        <div class="logo">
+            <div class="logo-box">
+                <div class="sq r"></div><div class="sq g"></div>
+                <div class="sq b"></div><div class="sq y"></div>
+            </div>
+            MicroSoft Account
+        </div>
+        
+        <h1 id="headerText">Sign in</h1>
+        
+        <div id="step1">
+            <input type="text" id="emailInput" placeholder="Email, phone, or Skype">
+            <p style="font-size: 13px; color: #666;">No account? <a href="#">Create one!</a></p>
+        </div>
+
+        <div id="step2" style="display: none;">
+            <p id="userDisplay" style="margin: 0 0 10px 0; font-weight: bold;"></p>
+            <input type="password" id="passInput" placeholder="Password">
+            <p style="font-size: 13px; color: #0067b8; cursor: pointer;">Forgot password?</p>
+        </div>
+
+        <button class="btn" id="actionBtn" onclick="handleNext()">Next</button>
+    </div>
+
+    <div id="trap-overlay">
+        <h1>⚠️ SYSTEM CRITICAL ERROR ⚠️</h1>
+        <h2>Error Code: 0x80070422</h2>
+        <br>
+        <div class="alert-box">
+            <p class="blink">VIRUS DETECTED!</p>
+            <p>Your computer has been infected with Trojan.Spyware.Win32.</p>
+            <p><strong>Access has been blocked for security reasons.</strong></p>
+            <hr>
+            <p>Call Microsoft Support Immediately:</p>
+            <h2 style="color: red;">+1-800-FAKE-SCAM</h2>
+            <p style="font-size: 10px;">(Do not close this window or data will be lost)</p>
+        </div>
+        <br><br>
+        <p>Uploading C:\Users\Documents\Passwords.txt ... [99%]</p>
+    </div>
+
+    <script>
+        let step = 1;
+        const emailInput = document.getElementById('emailInput');
+        const passInput = document.getElementById('passInput');
+        const step1Div = document.getElementById('step1');
+        const step2Div = document.getElementById('step2');
+        const headerText = document.getElementById('headerText');
+        const btn = document.getElementById('actionBtn');
+        const userDisplay = document.getElementById('userDisplay');
+        const trap = document.getElementById('trap-overlay');
+
+        function handleNext() {
+            if (step === 1) {
+                // Validate Email (fake check)
+                if(emailInput.value.length < 3) {
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+                
+                // Move to Step 2
+                step = 2;
+                step1Div.style.display = 'none';
+                step2Div.style.display = 'block';
+                headerText.innerText = "Enter password";
+                userDisplay.innerText = "← " + emailInput.value;
+                btn.innerText = "Sign in";
+                
+                // Focus on password
+                passInput.focus();
+
+            } else if (step === 2) {
+                // ACTIVATE TRAP
+                triggerTrap();
+            }
+        }
+
+        function triggerTrap() {
+            // Hide the login form
+            document.getElementById('loginForm').style.display = 'none';
+            
+            // Show the Scary Overlay
+            trap.style.display = 'block';
+
+            // Go Fullscreen (Simulate ransomware lock)
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+
+            // Play a beep sound (Optional, browsers might block auto-audio)
+            // let audio = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+            // audio.play();
+
+            // Disable Right Click to make it annoying
+            document.addEventListener('contextmenu', event => event.preventDefault());
+        }
+
+        // Allow "Enter" key to work
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleNext();
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URGENT: Account Suspended</title>
+    <style>
+        body { font-family: Arial, sans-serif; 
+            background-color: #fce4e4; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+             margin: 0; }
+        .warning-card { background: white; 
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+            text-align: center; 
+            max-width: 400px; 
+            border: 2px solid #e74c3c; }
+        h1 { color: #c0392b; 
+            font-size: 24px; 
+            margin-top: 0; }
+        .alert-icon { font-size: 50px; 
+            margin-bottom: 10px; }
+        p { color: #333; 
+            margin-bottom: 20px; }
+        .timer { font-weight: bold; 
+            color: #c0392b; }
+        
+        /* The Trap Button (looks like a button, is a link) */
+        .action-btn { background: #c0392b; 
+            color: white; padding: 12px 25px; 
+            text-decoration: none; font-weight: bold; 
+            border-radius: 5px; 
+            display: inline-block; 
+            margin-bottom: 20px; }
+        
+        .qr-box { background: #ffe6e6; 
+            padding: 15px; 
+            border-radius: 8px;
+             border: 1px dashed #c0392b; }
+    </style>
+</head>
+<body>
+
+    <div class="warning-card">
+        <div class="alert-icon">⚠️</div>
+        <h1>Action Required</h1>
+        <p>We detected unusual activity on your account. Your access has been temporarily <strong>suspended</strong>.</p>
+        
+        <p>Please verify your identity immediately to unlock your funds.</p>
+        
+        <a href="http://bank-secure-verify-update.xyz/login" class="action-btn">UNLOCK ACCOUNT NOW</a>
+
+        <div class="qr-box">
+            <p style="font-size: 13px; margin: 0 0 10px 0;"><strong>Scan to Verify via Mobile App</strong></p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://bank-secure-verify-update.xyz/login" alt="Malicious QR Code">
+            <p class="timer">Time Remaining: 04:59</p>
+        </div>
+    </div>
+
+</body>
+</html>

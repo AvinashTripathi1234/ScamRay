@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "ScamRay AI",
+  "version": "1.1",
+  "description": "AI-Powered Phishing Detector",
+  "permissions": ["activeTab", "scripting", "sidePanel"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Scan with PhishGuard"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "icons": {
+    "16": "download.jpg",
+    "48": "download.jpg",
+    "128": "download.jpg"
+  }
+}
